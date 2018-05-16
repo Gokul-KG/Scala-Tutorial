@@ -13,3 +13,13 @@ val x = s -- t
 val y = t -- s
 
 val z = t - 6
+
+val list = List(1, 2, 3)
+
+val tx = list.flatMap { x =>
+  val k = x * 3
+  if(k < 5)
+    Some(k)
+  else
+    None
+}
