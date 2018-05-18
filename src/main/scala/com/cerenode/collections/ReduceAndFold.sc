@@ -6,4 +6,6 @@ val k = s.take(10).product  //s.take(10).fold(0)(_ + _)
 
 val t = s.reduce(_ + _)
 
-val te = s.fold(10)(_ + _)
+val t1 = s.reduce { (cur, sum) =>
+  sum + cur
+}

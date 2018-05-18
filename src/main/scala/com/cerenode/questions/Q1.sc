@@ -14,6 +14,8 @@ println(x)
 
 // Ans
 
+val y = if (t<10) 1 else -1
+
 
 // Q2
 // iterate over list and remove duplicates and preserve the order
@@ -31,24 +33,33 @@ outList
 
 // Ans
 
+val g: List[Int] = inList.foldLeft(List.empty[Int]) { (acc, cur) =>
+  if(acc.contains(cur))
+    acc
+  else
+    acc :+ cur
+}
+
 // Q3
 
 def isEven(i: Int) = {
   if (i % 2 == 0)
-    i
+    Some(i)
+  else
+    None
 }
 
 isEven(2)
 isEven(3)
 
 def filterOut(l: List[Int]) = {
-  l.map { el =>
+  l.flatMap { el =>
     isEven(el)
   }
 }
 
 
-val g = filterOut(List(1, 2, 3, 4))
+val g2 = filterOut(List(1, 2, 3, 4))
 
 // Ans
 
@@ -90,18 +101,26 @@ v.foreach(println(_))
 
 // Q8
 
+def isPrime(a: Int) = 2 until a forall(p => a % p != 0)
+
 val listSet: List[Range] = List(
   99804 to 84563 by -1, 2567 to 8904, 9085 to 7657 by -1,
   43567 to 39458 by -1)
 
-/*
-val maxList = listSet.map { s =>
-  s.filter(isPrime).min
+
+val maxList = {
+  val t1 = System.nanoTime()
+  val h = listSet.map { s =>
+    s.par.filter(isPrime).par.min
+  }
+  val t2 = System.nanoTime()
+  println("execution time :" + (t2 - t1))
+  h
 }
 
 
 maxList
-*/
+
 
 
 
