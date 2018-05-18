@@ -47,13 +47,15 @@ sales.values.toVector.flatten.sum
 
 
 
-// Scala product of two vectors
+// Scalar product of two vectors
 
 val t = Vector(1.2f, 3.4f, 2.4f)
 
 val u = Vector(2.3f, 3.4f, 10.9f)
 
 t zip u map (xy => xy._1 * xy._2)
+
+// getting same result using for expression
 
 
 
@@ -63,11 +65,31 @@ val f = (1 to 20) flatMap { i =>
   (1 to i) map { j =>
     (i, j)
   }
-}
-
-f.foreach { pair =>
+} foreach { pair =>
   val sum = pair._1 + pair._2
-  val test = 2 to sum - 1 forall(k => sum % k != 0)
+  val test = 2 until sum forall(k => sum % k != 0)
   if(test)
     print(pair + ", ")
 }
+
+// can you rewrite
+
+val g = for {
+  i <- 1 to 20
+  j <- 1 to i
+  sum = i + j
+  test = 2 until sum forall (k => sum % k != 0)
+  if test
+
+} yield (i, j)
+
+
+
+
+
+
+
+
+
+
+
