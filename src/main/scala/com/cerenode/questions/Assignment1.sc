@@ -20,7 +20,10 @@ def factorial_N(number: Int): Int = {
 //    - sum of cubes of integers (1^3 + 2^3 + 3^3 + ...)
 //    - sum of factorials (1! + 2! + 3! + ...)
 
-def sum(a: Int, b: Int): Int = if(a > b) 0 else a + sum(a + 1, b)
+def sum(a: Int, b: Int): Int = {
+  if(a > b) 0
+  else a + sum(a + 1, b)
+}
 
 def sumOfCubes(a: Int, b: Int): Int = {
   if(a > b) 0
@@ -35,6 +38,12 @@ def sumOfFactorials(a: Int, b: Int): Int = {
 
 // write generic function for this
 
+def genericSum(a: Int, b: Int, f: Int => Int): Int = {
+  if(a > b) 0
+  else f(a) + genericSum(a + 1, b, f)
+}
+
+genericSum(2, 4, (x: Int) => x * x * x)
 
 // CURRYING
 
