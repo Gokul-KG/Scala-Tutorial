@@ -83,7 +83,7 @@ def someOperation(l: List[Int]): List[Int] = {
 
 // write a method to check whether a number is prime or not
 
-
+def isPrime(i: Int): Boolean = 2 until i forall(k => i % k != 0)
 
 // Q7
 /*
@@ -99,9 +99,17 @@ val v = s.take(20)
 v.foreach(println(_))
 */
 
-// Q8
+// Ans
 
-def isPrime(a: Int) = 2 until a forall(p => a % p != 0)
+val k = 1 to 10000000
+
+val s = k.view.filter(isPrime)
+
+val v = s.take(20)
+
+v.foreach(println(_))
+
+// Q8
 
 val listSet: List[Range] = List(
   99804 to 84563 by -1, 2567 to 8904, 9085 to 7657 by -1,
@@ -111,7 +119,7 @@ val listSet: List[Range] = List(
 val maxList = {
   val t1 = System.nanoTime()
   val h = listSet.map { s =>
-    s.par.filter(isPrime).par.min
+    s.filter(isPrime).min
   }
   val t2 = System.nanoTime()
   println("execution time :" + (t2 - t1))
@@ -122,7 +130,19 @@ val maxList = {
 maxList
 
 
+// Ans
 
+val maxList2 = {
+  val t1 = System.nanoTime()
+  val h = listSet.map { s =>
+    s.par.filter(isPrime).min
+  }
+  val t2 = System.nanoTime()
+  println("execution time :" + (t2 - t1))
+  h
+}
+
+maxList2
 
 /*
 
