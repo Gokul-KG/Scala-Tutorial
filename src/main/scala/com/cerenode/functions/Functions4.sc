@@ -48,10 +48,13 @@ val squareRoot: PartialFunction[Double, Double] = {
 squareRoot.isDefinedAt(4)   // returns true
 squareRoot.isDefinedAt(-4)  // returns false
 
+val t: List[Double] = List(1, 4, 16, -9)
+t.collect(squareRoot)
+
 
 // partially applied functions
 
-def isInRange(left: Int, n: Int, right: Int): Boolean = {
+def isInRange(left: Int = 10, n: Int, right: Int): Boolean = {
   if (left < n && n < right) true else false
 }
 

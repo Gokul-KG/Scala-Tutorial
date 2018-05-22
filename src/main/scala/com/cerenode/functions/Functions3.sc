@@ -34,21 +34,35 @@ moneyTransfer(400, providerB)
 
 // normal function
 
-def add(a: Int, b: Int): Int = a + b
+def add(a: Int, b: Int): Int = {
+  a + b
+}
 
-add(2, 3)
+//add(2, 3, 4);
 
 // curried function
 
-def add_C(a: Int): Int => Int = (b: Int) => a + b
+def add_C(a: Int): Int => Int => Int = {
+  (b: Int) => {
+    (c: Int) => a + b + c: Int
+  }: Int => Int
+}
 
-add_C(2)(3)
+//add_C(2)(3)
 
 //syntactic sugar
 
 def add_CSimple(a: Int)(b: Int) = a + b
 
 add_CSimple(2)(3)
+
+
+
+
+
+
+
+
 
 // converting to a curried function
 
