@@ -49,3 +49,9 @@ add_C(2)(3)
 def add_CSimple(a: Int)(b: Int) = a + b
 
 add_CSimple(2)(3)
+
+// converting to a curried function
+
+val g = (add _).curried
+
+g(2)
