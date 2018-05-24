@@ -37,10 +37,12 @@ val f = g.copy(price = 32000f, engine = 1245, fuel = "Diesel")
 
 // abstract class
 
-abstract class Student {
-  val value: String
-  def method: String
+abstract class Student(a: Int) {
+  val next: String
+  def methodX: String
 }
 
-// traits
-
+trait Student2 {
+  val next: String
+  def methodX: String
+}

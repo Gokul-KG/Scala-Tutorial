@@ -1,3 +1,4 @@
+import scala.annotation.tailrec
 // class exercise
 
 // HIGHER ORDER FUNCTION
@@ -20,14 +21,18 @@ def factorial_N(number: Int): Int = {
 //    - sum of cubes of integers (1^3 + 2^3 + 3^3 + ...)
 //    - sum of factorials (1! + 2! + 3! + ...)
 
-def sum(a: Int, b: Int): Int = {
-  if(a > b) 0
-  else a + sum(a + 1, b)
+def sumN(a: Int, b: Int): Int = {
+  @tailrec
+  def sum(a: Int, b: Int, acc: Int = 0): Int = {
+    if (a > b) acc
+    else sum(a + 1, b, acc + a)
+  }
+  sum(a, b)
 }
 
-def sumOfCubes(a: Int, b: Int): Int = {
-  if(a > b) 0
-  else a * a * a + sumOfCubes(a + 1, b)
+def sumOfCubes(a: Int, b: Int, acc: Int): Int = {
+  if(a > b) acc
+  else sumOfCubes(a + 1, b, acc + a * a * a)
 }
 
 def sumOfFactorials(a: Int, b: Int): Int = {
@@ -43,7 +48,11 @@ def genericSum(a: Int, b: Int, f: Int => Int): Int = {
   else f(a) + genericSum(a + 1, b, f)
 }
 
+genericSum(2, 4, (x:Int) => x)
+
 genericSum(2, 4, (x: Int) => x * x * x)
+
+genericSum(2, 4, factorial_N)
 
 // CURRYING
 
