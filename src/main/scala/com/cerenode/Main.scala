@@ -1,4 +1,8 @@
 
+
+
+
+
 class Main {
   private val k = 7
   println("start " + Main.k)

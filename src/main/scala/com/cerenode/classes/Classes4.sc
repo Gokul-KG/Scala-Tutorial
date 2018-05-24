@@ -38,18 +38,26 @@ object ListClass {
   }
 }
 
+ListClass.getIdxValue(3) match {
+  case Some(x) => println(x)
+    true
+  case None => println("something else")
+    false
+}
+
 
 // sealed class
 
 case class User(name: String, acc: Account)
-trait Account
+sealed trait Account
 case class Paypal(email: String) extends Account
 case class Card(number: Long) extends Account
 
 def whatIs(obj: User): Unit = {
   val ret = obj match {
     case User(name, Paypal(email))  => (name, email)
-    case User(name, Card(number)) => (name, number)
+//    case User(name, Card(number)) => (name, number)
+    case _ => println("")
   }
   println(ret)
 }
@@ -57,30 +65,32 @@ def whatIs(obj: User): Unit = {
 // @unchecked
 
 def whatIs2(obj: User): Unit = {
-  val ret = (obj) match {
+  val ret = (obj: @unchecked) match {
     case User(name, Paypal(email)) => (name, email)
   }
   println(ret)
 }
 
+//
+
 class A {
   val t = {
-    val file = Source.fromFile("/Users/mithunrajarackal/test/orphaFiles/orphaWithEntrezProbeIdExpressionClean.csv")
-    file.getLines().toList.head
+    System.nanoTime()
   }
   def g = {
-    val file = Source.fromFile("/Users/mithunrajarackal/test/orphaFiles/orphaWithEntrezProbeIdExpressionClean.csv")
-    file.getLines().toList.head
+    System.nanoTime()
   }
   lazy val kl =  {
-    val file = Source.fromFile("/Users/mithunrajarackal/test/orphaFiles/orphaWithEntrezProbeIdExpressionClean.csv")
-    file.getLines().toList.head
+    System.nanoTime()
   }
 }
 
 val h = new A
 
+h.kl
 h.t
+h.t
+h.g
 h.g
 h.kl
 

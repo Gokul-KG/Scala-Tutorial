@@ -1,4 +1,8 @@
 class Rational(x: Int, y: Int = 3) {
+  private def gcd(a: Int, b: Int): Int =
+    if(b == 0) a else gcd(b, a % b)
+  private val g = gcd(x, y) // g will hold the GCD of the numerator and the denominator
+
   def this(x: Int) = this(x, 1)
 
   def numer = x
@@ -18,6 +22,12 @@ class Rational(x: Int, y: Int = 3) {
   override def toString: String = {
     numer + "/" + denom
   }
+
+  // implement the following two methods
+  // less - check whether the rational is less than another rational
+  //    def less(that: Rational): Boolean = { ??? }
+  // max - find max among two rationals
+  //    def max(that: Rational): Rational = { ??? }
 
 }
 
@@ -43,6 +53,8 @@ j.denom
 val y = addRationals(x, z)
 y.numer
 y.denom
+
+x + x
 
 object Rational {
   private val k = 34

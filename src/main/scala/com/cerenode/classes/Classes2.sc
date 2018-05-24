@@ -46,3 +46,10 @@ trait Student2 {
   val next: String
   def methodX: String
 }
+
+
+
+
+
+
+

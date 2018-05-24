@@ -18,23 +18,24 @@ println("baz.isInstanceOf[Foo]: " + baz.isInstanceOf[Foo])
 
 // other example
 
-abstract class Drawable {
-  def draw()
+trait Drawable {
+  def draw(): Unit = { println("ALASDAS") }
 }
 
 trait Cowboy extends Drawable {
   override def draw() { println("Bang!") }
 }
 
-trait Artist extends Drawable {
+abstract class Artist extends Drawable {
   override def draw() { println("A pretty painting") }
 }
 
-class CowboyArtist extends Artist with Cowboy {
+class CowboyArtist extends Artist with Drawable with Cowboy  {
   def pr(): Unit = {
     println("hihi")
     super.draw()
     super[Artist].draw()
+    super[Drawable].draw()
   }
 }
 
