@@ -146,7 +146,7 @@ maxList2
 
 /*
 
-store fruits and vegetables available in a store (no addition to this set)
+store fruits and vegetables available in a store
 
 store price of each item assuming price won't change
 
@@ -167,3 +167,41 @@ functions
   generate a bill
 
  */
+
+// gcd
+
+trait Item {
+  // what are the parameters for the trait
+}
+
+case class Fruit(name: String, price: Float) extends Item {
+  def discount: Float = { price * 0.10f }
+}
+
+// discount for fruit and vegetable are calculated differently
+
+class Vegetable(name: String, stock: Int, price: Float) extends Item {
+  def discountConstrained: Float = { if(stock > 100) price * 0.20f else price * 0.10f }
+}
+
+def getDiscount(obj: Item) = {
+  val g = obj match {
+    case a: Fruit => a.price - a.discount
+    case a: Vegetable => a.discountConstrained
+  }
+  g
+}
+
+// implement how to manage persons in a company
+// class heirarchy
+// class Person
+//  abstract or trait
+// employee extends person
+// manager extends employee etc....
+
+
+
+var apple = Fruit("apple", 24.5f)
+
+apple = Fruit("ORA", 34.6F)
+
