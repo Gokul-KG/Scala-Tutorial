@@ -1,12 +1,12 @@
-class Rational(x: Int, y: Int = 3) {
+class Rational(var x: Int, y: Int = 3) {
   private def gcd(a: Int, b: Int): Int =
     if(b == 0) a else gcd(b, a % b)
   private val g = gcd(x, y) // g will hold the GCD of the numerator and the denominator
 
   def this(x: Int) = this(x, 1)
 
-  def numer = x
-  def denom = y
+  var numer = x / g
+  val denom = y / g
 
   def + (that: Rational): Rational = {
     new Rational(numer * that.denom + denom * that.numer,
@@ -25,9 +25,13 @@ class Rational(x: Int, y: Int = 3) {
 
   // implement the following two methods
   // less - check whether the rational is less than another rational
-  //    def less(that: Rational): Boolean = { ??? }
+  def less(that: Rational): Boolean = {
+    numer * that.denom < denom * that.numer
+  }
   // max - find max among two rationals
-  //    def max(that: Rational): Rational = { ??? }
+  def max(that: Rational): Rational = {
+    if(this.less(that)) that else this
+  }
 
 }
 
@@ -40,6 +44,8 @@ val xxy = new Rational(2)
 
 val x: Rational = new Rational(3, 4)
 val z: Rational = new Rational(4, 5)
+
+x.less(z)
 
 println(x)
 x.numer
@@ -84,4 +90,16 @@ object StringUtils {
 }
 
 StringUtils.url
+
+var op = new Rational(4, 6)
+val op3 = new Rational(5, 8)
+
+val gh =  new Rational(89, 3)
+op
+
+
+
+
+
+
 

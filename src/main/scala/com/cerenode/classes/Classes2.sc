@@ -49,6 +49,14 @@ trait Student2 {
 
 
 
+List(1, 2, 3).foldLeft(List.empty[Int]) { (acc, cur) =>
+  if(cur % 2 == 0)
+    acc :+ cur
+  else
+    acc
+}
+
+List().fol
 
 
 
