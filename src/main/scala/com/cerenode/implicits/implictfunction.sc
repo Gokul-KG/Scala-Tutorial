@@ -13,19 +13,16 @@ case class LongBox(value: Long) extends Box[Long] {
 }
 
 
-
-
 val a = IntBox(3)
 
 val b = IntBox(4)
 
 val c = LongBox(10l)
 
-implicit def intToIntBox(x:Int) = IntBox(x)
-implicit def LongBox(x:IntBox) = LongBox(x.value)
+
 
 a + b
 
-a + 6
+//a + 6
 
-a + c
+//a + c

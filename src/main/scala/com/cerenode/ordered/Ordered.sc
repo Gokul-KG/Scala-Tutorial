@@ -1,5 +1,5 @@
 
-case class Person(name: String, age:Int) extends Ordered[Person] {
+case class Person(name: String, age:Int, height:Float) extends Ordered[Person] {
   override def compare(that: Person): Int = {
 
     -(this.age - that.age)
@@ -7,18 +7,16 @@ case class Person(name: String, age:Int) extends Ordered[Person] {
   }
 }
 
-val persons = (for {
-  age <- 1 to 26
-} yield Person("name_"+ age, age)).toList
-
-println(persons)
-
-val s = persons(0) > persons(1)
 
 
+val p1 = Person("P1", 22, 5.6f)
+val p2 = Person("P2", 50, 5.2f)
+val p3 = Person("P3", 20, 6f)
 
 
-persons.sorted
+p1 compare  p2
+p1 > p2
+
 
 
 

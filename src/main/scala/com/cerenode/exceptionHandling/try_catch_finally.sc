@@ -13,6 +13,7 @@ def readAndWreite = {
   }
   catch {
     case e: IOException => { println(e) }
+          // log exception
   }
   finally {
     bw.close()
